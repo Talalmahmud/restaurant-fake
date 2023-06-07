@@ -51,18 +51,20 @@ const Menu = () => {
 
     const handleCategoryChange = (event) => {
         setCategory(event.target.value);
-        toast.success(event.target.value, toastSuccess);
+        toast.success(
+            `You select ${event.target.value} category`,
+            toastSuccess
+        );
     };
 
     const handleSearchTermChange = (event) => {
         setSearchTerm(event.target.value);
-        toast.success(event.target.value, toastSuccess);
     };
 
     const handleDietaryChange = (event) => {
         const selectedFilters = event.target.value;
         setDietary(selectedFilters);
-        toast.success(event.target.value, toastSuccess);
+        toast.success(`You select ${event.target.value} dietary`, toastSuccess);
     };
 
     const allDietaryTags = Array.from(
@@ -73,7 +75,7 @@ const Menu = () => {
         <Tooltip {...props} classes={{ popper: className }} />
     ))(() => ({
         [`& .${tooltipClasses.tooltip}`]: {
-            backgroundColor: "white",
+            backgroundColor: "#f2f3f5",
             color: "black",
             boxShadow: 4,
             fontSize: 18,
@@ -128,14 +130,14 @@ const Menu = () => {
                     </Select>
                 </FormControl>
             </div>
-            <h2 className=" text-orange-700 text-3xl font-bold text-center">
+            <h2 className=" text-orange-700 text-3xl font-bold text-center md:mb-6 mb-2">
                 All Dishes
             </h2>
             <div className="grid p-2 grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-4">
                 {filteredDishes.map((dish) => (
                     <Link to={`/dish/${dish.id}`} key={dish.id}>
                         {" "}
-                        <div className=" bg-slate-200 p-4 rounded shadow">
+                        <div className=" p-4 rounded shadow-md hover:shadow-lg">
                             <LightTooltip
                                 title={dish.dietary_tags.join(", ")}
                                 placement="bottom"
